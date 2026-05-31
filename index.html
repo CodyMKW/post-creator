@@ -1048,8 +1048,8 @@
                 if (m) meta[m[1]] = m[2].trim();
             }
 
-            // Decode \n escape sequences in content2 back to real newlines
-            const c2 = meta.content2 ? meta.content2.replace(/\\n/g, '\n') : '';
+            // Decode <br> escape sequences in content2 back to real newlines
+            const c2 = meta.content2 ? meta.content2.replace(/<br>/g, '\n').replace(/\\n/g, '\n') : '';
 
             document.getElementById('c-title').value    = meta.title    || '';
             document.getElementById('c-author').value   = meta.author   || 'CodyMKW';
@@ -1101,8 +1101,8 @@
         if (image)    md += `image: ${image}\n`;
         if (video)    md += `video: ${video}\n`;
         if (rating)   md += `rating: ${rating}\n`;
-        // Store content2 as a single line with \n escape sequences
-        if (content2) md += `content2: ${content2.replace(/\n/g, '\\n')}\n`;
+        // Store content2 as a single line with <br> escape sequences
+        if (content2) md += `content2: ${content2.replace(/\n/g, '<br>')}\n`;
         md += '---\n\n';
         md += content;
 
